@@ -1,0 +1,63 @@
+﻿<Window x:Class="Snake.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Snake"
+        mc:Ignorable="d"
+        Title="Snake" Height="800" Width="1400"
+        MinWidth="300" MinHeight="300"
+        Background="{StaticResource BackgroundColor}"
+        Foreground="{StaticResource TextColor}"
+        FontFamily="{StaticResource MainFont}"
+        WindowStartupLocation="CenterScreen"
+        Icon="Assets/icon.ico"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        KeyDown="Window_KeyDown"
+        >
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="ScoreText" HorizontalAlignment="Center" VerticalAlignment="Center" Text="SCORE 0" FontSize="22" Margin="10" />
+
+            <Border x:Name="GridBorder"
+            Grid.Row="1"
+            BorderBrush="{StaticResource GridLineColor}"
+            BorderThickness="1.5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            RenderOptions.EdgeMode="Aliased"
+            Margin="20,0,20,20"
+            >
+                <UniformGrid x:Name="GameGrid"
+                     Width="400"
+                     Height="400"
+                     Background="{StaticResource GridBackgroundColor}"
+                     SnapsToDevicePixels="True"
+                     RenderOptions.BitmapScalingMode="HighQuality"
+                     >
+                </UniformGrid>
+            </Border>
+
+            <Border x:Name="Overlay"
+                    Grid.Row="1"
+                    Background="{StaticResource OverlayColor}"
+                    Width="{Binding Path=ActualWidth, ElementName=GridBorder}"
+                    Height="{Binding Path=ActualHeight, ElementName=GridBorder}"
+                    Margin="{Binding Path=Margin, ElementName=GridBorder}"
+                    RenderOptions.EdgeMode="Aliased"
+                    >
+                <TextBlock x:Name="OverlayText" Text="PRESS ANY KEY TO START"
+                           FontSize="26"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           />
+            </Border>
+        </Grid>
+    </Viewbox>
+</Window>
